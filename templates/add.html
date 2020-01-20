@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+
+{% block title %}اضافه عامل{% endblock  %}
+
+{% block content %}
+  <div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
+                <h4 class="page-title" style="text-align:right;font-size:35px;font-family:cortoba">بيانات العميل</h4>
+            </div>
+        </div>
+      <form class="form-horizontal form-material" method="post" action=".">
+        {% csrf_token %}
+        <div class="row">
+          <div class="white-box" style="display: flex;">
+              <div class="col-md-12 col-xs-12 " style="text-align: right;">
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                        <label class="col-md-12">رقم التيليفون</label>
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">الرقم المدنى</label>
+                        {{ form.id_number }}
+                    </div>
+                    <div class="col-md-4">
+                      <label class="col-md-12" >اسم العامل</label>
+                        {{ form.full_name }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                        <label class="col-md-12">الراتب</label>
+                        {{ form.salary }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">الجنسيه</label>
+                        {{ form.nationality }}
+                    </div>
+                    <div class="col-md-4">
+                      <label class="col-md-12" >طريقه الوصول</label>
+                        {{ form.getting_method }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-6">
+                        <label class="col-md-12">رقم تليفون الضامن</label>
+                        {{ form.sponser_phone }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-12">الوسيط الضامن</label>
+                        {{ form.sponser }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-6">
+                        <label class="col-md-12">عنوان الشركه</label>
+                        {{ form.company_address }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-12">اسم الشركة</label>
+                        {{ form.company_name }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                      <label class="col-md-12" >تاريخ انتهاء الرخصة التجارية</label>
+                        {{ form.commercial_exp }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">تاريخ انتهاء تقدير الاحتياج</label>
+                        {{ form.exp_need }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">تاريخ انتهاء الاقامة</label>
+                        {{ form.exp_date }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                      <label class="col-md-12" >المبلغ الواصل</label>
+                        {{ form.paid_money }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">المبلغ الاجمالى</label>
+                        {{ form.total_money }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">طريقة الحساب</label>
+                        {{ form.calculate_method }}
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-2" style="float: right;margin-right:45%;">
+                      <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock  %}

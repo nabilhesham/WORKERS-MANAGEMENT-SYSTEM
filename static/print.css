@@ -1,0 +1,115 @@
+body {
+    /* background-color: black; */
+}
+
+.row {
+    width: 94%;
+    display: inline-block;
+    margin: .5% 3%;
+}
+
+.row>img {
+    width: 12%;
+    float: left;
+    padding: .5% .5%;
+}
+
+.row>div.intro {
+    float: right;
+    text-align: right;
+    font-family: cortoba;
+    font-size: 15pt;
+    padding: 1% .5%;
+}
+
+.row_title {
+    text-align: center;
+    font-family: cortoba;
+    font-size: 12pt;
+    width: 94%;
+    margin: 0% 3%;
+}
+
+.row_title>h2 {
+    margin: 0;
+}
+
+.report {
+    width: 94%;
+    margin: .05% 3%;
+    display: flex;
+}
+
+.report>div.section1 {
+    width: 32%;
+    text-align: right;
+    font-size: 15pt;
+    margin: 1% 0;
+}
+
+.report>div.section1 label:nth-of-type(1) {
+    font-size: 13;
+    font-family: cortoba;
+}
+
+.report>div.section1 label:nth-of-type(2) {
+    font-size: 10pt;
+}
+
+.report>div.section2 {
+    width: 48%;
+    text-align: right;
+    font-size: 15pt;
+    margin: 1% 0;
+}
+
+.report>div.section2 label:nth-of-type(1) {
+    font-size: 13;
+    font-family: cortoba;
+}
+
+.report>div.section2 label:nth-of-type(2) {
+    font-size: 10pt;
+}
+
+.report>div.section3 {
+    width: 24%;
+    text-align: right;
+    font-size: 15pt;
+    margin: 1% 0;
+}
+
+.report>div.section3 label:nth-of-type(1) {
+    font-size: 13;
+    font-family: cortoba;
+}
+
+.report>div.section3 label:nth-of-type(2) {
+    font-size: 10pt;
+}
+
+.table {
+    width: 94%;
+}
+
+table,
+th,
+td {
+    border: 1px solid black;
+}
+
+table {
+    margin: 0 auto;
+    width: 80%;
+}
+
+div#buttom>input {
+    width: 10%;
+    height: 30px;
+    background-color: rgba(104, 235, 133, 0.904);
+    border-radius: 10px;
+}
+
+div#buttom {
+    text-align: center;
+}

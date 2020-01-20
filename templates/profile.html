@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}المستخدم{% endblock  %}
+
+{% block content %}
+  <div id="page-wrapper">
+      <div class="container-fluid">
+          <div class="row bg-title">
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
+                  <h4 class="page-title" style="text-align:right  ; font-size:35px ; font-family:cortoba">صفحة المستخدم</h4>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-8 col-xs-12 " style="text-align: right;">
+                  <div class="white-box">
+                    {% if err %}{{ err }}{% endif %}
+                      <form class="form-horizontal form-material" method="post" action=".">
+                        {% csrf_token %}
+                          <div class="form-group">
+                              <label class="col-md-12">أسم المستخدم</label>
+                              <div class="col-md-12" style="text-align: right;">
+                                  {{ user_form.username }}
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-sm-12">
+                                <input type="submit" class="btn btn-success" value="تحديث أسم المستخدم">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+              <div class="col-md-4 col-xs-12">
+                <div class="white-box">
+                    <div class="user-bg">
+                        <div class="overlay-box">
+                            <div class="user-content">
+                                <img src="{% static 'plugins/images/users/avatar.png' %}" class="thumb-lg img-circle" alt="img">
+                                <h4 class="text-white">{{ request.user }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="col-md-8 col-xs-12 " style="text-align: right;">
+                <div class="white-box">
+                  {% if err %}{{ err }}{% endif %}
+                    <form class="form-horizontal form-material" method="post" action=".">
+                      {% csrf_token %}
+                        <div class="form-group">
+                            <label class="col-md-12"> كلمة مرور جديده</label>
+                            <div class="col-md-12">
+                                {{ password_form.password }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-12"> تأكيد كلمه المرور الجديده</label>
+                            <div class="col-md-12">
+                                {{ password_form.password2 }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                              <input type="submit" class="btn btn-success" value="تحديث كلمة المرور">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+          </div>
+          <!-- /.row -->
+      </div>
+  </div>
+{% endblock  %}

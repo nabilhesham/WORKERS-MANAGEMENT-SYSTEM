@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}كل العملاء{% endblock  %}
+
+{% block content %}
+  <div id="page-wrapper">
+      <div class="container-fluid">
+          <div class="row bg-title">
+              <div class="col-lg-8 col-md-4 col-sm-4 col-xs-12 pull-right" >
+                  <h4 class="page-title" style="text-align: right; ; font-size:35px ; font-family:cortoba">{% if query %}نتائج البحث{% elif company %}' العاملين فى شركه ' {{ company }}{% else %}اجمالى العملاء{% endif %}</h4>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12">
+                  <div class="white-box">
+                    {% if not query %}
+                      <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                              <button class="btn btn-success"><a href="{% url 'my_app:add_worker' %}">إضافة عميل</a></button>
+                          </div>
+                          <div class="col-sm-12 col-md-6">
+                              <h3 class="box-title" style="text-align: right;">إجمالي العملاء</h3>
+                          </div>
+                      </div>
+                    {% endif %}
+                      <div class="table-responsive">
+                          <table class="table" dir="rtl" style="text-align: center;">
+                              <thead>
+                                  <tr>
+                                      <th style="text-align: center;">#</th>
+                                      <th style="text-align: center;">الإسم</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for w in workers %}
+                                  <tr>
+                                      <td>{{ forloop.counter }}</td>
+                                      <td class="txt-oflo"><a href="{{ w.get_absolute_url }}">{{ w.full_name }}</a></td>
+                                  </tr>
+                                {% endfor %}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- /.container-fluid -->
+      <footer class="footer text-center"> 2019 &copy; ITI TEAM brought to you This site </footer>
+  </div>
+{% endblock  %}

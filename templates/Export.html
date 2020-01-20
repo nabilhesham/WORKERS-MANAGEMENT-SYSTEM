@@ -1,0 +1,138 @@
+{% load static %}
+{% load tz %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'plugins/images/favicon.png' %}">
+    <title> بيانات العامل </title>
+    <link href="{% static 'print.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="row">
+        <img src="{% static 'images/logo.jpeg' %}">
+        <div class="intro">
+            <br>
+            <label> الشركة :  </label> <label> {{ worker.company_name }}</label><br>
+            <label> {{ toDay }}</label><label> : التاريخ</label><br>
+        </div>
+    </div>
+    <div class="row_title">
+        <h2>تقرير عن العامل </h2>
+    </div>
+    <hr style="width: 94%;">
+    <div class="report">
+        <div class="section1">
+            <label>  : رقم التليفون</label><br>
+            <label> {{ worker.phone_number }}</label>
+        </div>
+        <div class="section1">
+            <label>  : الرقم المدنى</label><br>
+            <label> {{ worker.id_number }} </label>
+        </div>
+        <div class="section1">
+            <label>  : أسم العامل</label><br>
+            <label> {{ worker.full_name }} </label>
+        </div>
+    </div>
+    <div class="report">
+        <div class="section1">
+            <label>  : الراتب</label><br>
+            <label> {{ worker.salary }}</label>
+        </div>
+        <div class="section1">
+            <label>  : الجنسيه</label><br>
+            <label> {{ worker.nationality }} </label>
+        </div>
+        <div class="section1">
+            <label>  : طريقه الوصول</label><br>
+            <label> {{ worker.getting_method }}</label>
+        </div>
+    </div>
+    <div class="report">
+        <div class="section2">
+            <label>  : رقم تليفون الضامن</label><br>
+            <label> {{ worker.sponser_phone }}</label>
+        </div>
+        <div class="section2">
+            <label>  : الوسيط الضامن</label><br>
+            <label> {{ worker.sponser }} </label>
+        </div>
+    </div>
+    <div class="report">
+        <div class="section2">
+            <label>  : عنوان الشركه</label><br>
+            <label> {{ worker.company_address }}</label>
+        </div>
+        <div class="section2">
+            <label>  : اسم الشركة</label><br>
+            <label> {{ worker.company_name }}</label>
+        </div>
+    </div>
+    <div class="report">
+        <div class="section1">
+            <label>  : تاريخ انتهاء الرخصة التجارية</label><br>
+            <label> {{ worker.commercial_exp }}</label>
+        </div>
+        <div class="section1">
+            <label>  : تاريخ انتهاء تقدير الاحتياج</label><br>
+            <label> {{ worker.exp_need }}</label>
+        </div>
+        <div class="section1">
+            <label>  : تاريخ انتهاء الاقامة</label><br>
+            <label> {{ worker.exp_date }}</label>
+        </div>
+    </div>
+    <div class="report">
+        <div class="section3">
+            <label>  : الباقى</label><br>
+            <label> {{ worker.unpaid_money }}</label>
+        </div>
+        <div class="section3">
+            <label>  : المبلغ الواصل</label><br>
+            <label> {{ worker.paid_money }}</label>
+        </div>
+        <div class="section3">
+            <label>  : المبلغ الاجمالى</label><br>
+            <label> {{ worker.total_money }}</label>
+        </div>
+        <div class="section3">
+            <label>  : طريقة الحساب</label><br>
+            <label> {{ worker.calculate_method }}</label>
+        </div>
+    </div>
+    {% if worker.reports.all %}
+      <div class="table">
+          <table style="text-align: right;">
+              <thead>
+                  <tr>
+                      <th style="text-align: center;">تاريخ السداد</th>
+                      <th style="text-align: center;">تاريخ الاستحقاق</th>
+                      <th style="text-align: center;">القسط</th>
+                      <th style="text-align: center;">#</th>
+                  </tr>
+              </thead>
+              <tbody>
+                {% for r in worker.reports.all %}
+                  <tr>
+                    <td>{{ r.date_of_exp }}</td>
+                    <td>{{ r.date_of_paid }}</td>
+                    <td>{{ r.installment }}</td>
+                    <th scope="row" style="text-align: right;">{{ forloop.counter }}</th>
+                  </tr>
+                {% endfor %}
+              </tbody>
+          </table>
+      </div>
+    {% endif %}
+    <script src="{% static 'print.js' %}"></script>
+</body>
+
+</html>

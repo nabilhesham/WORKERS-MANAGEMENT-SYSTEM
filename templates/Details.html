@@ -1,0 +1,170 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ worker.full_name }}{% endblock  %}
+
+{% block content %}
+
+  <div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-sm-6 col-md-1" style="text-align: right;">
+              <button class="btn btn-info"> <a href="{% url 'my_app:print_report' worker.id %}">طباعه بيانات العميل</a></button>
+            </div>
+            <div class="col-sm-6 col-md-1" style="text-align: right;margin-left:120px;">
+              <form action="{% url 'my_app:delete_worker' worker.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn btn-danger">حذف العميل</button>
+              </form>
+            </div>
+            {% if not worker.expired %}
+              <div class="col-sm-6 col-md-1" style="text-align: right;margin-left:50px;">
+                <form action="{% url 'my_app:addToExpire_worker' worker.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-info">اضافه الى المنتهي اقامتهم</button>
+                </form>
+              </div>
+            {% endif %}
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
+                <h4 class="page-title" style="text-align:right;font-size:35px;font-family:cortoba">بيانات العميل</h4>
+            </div>
+        </div>
+      <form class="form-horizontal form-material" method="post" action="{% url 'my_app:worker_detail' worker.id %}">
+        {% csrf_token %}
+        <div class="row">
+          <div class="white-box" style="display: flex;">
+              <div class="col-md-12 col-xs-12 " style="text-align: right;">
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                        <label class="col-md-12">رقم التيليفون</label>
+                        {{ form.phone_number }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">الرقم المدنى</label>
+                        {{ form.id_number }}
+                    </div>
+                    <div class="col-md-4">
+                      <label class="col-md-12" >اسم العامل</label>
+                        {{ form.full_name }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                        <label class="col-md-12">الراتب</label>
+                        {{ form.salary }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">الجنسيه</label>
+                        {{ form.nationality }}
+                    </div>
+                    <div class="col-md-4">
+                      <label class="col-md-12" >طريقه الوصول</label>
+                        {{ form.getting_method }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-6">
+                        <label class="col-md-12">رقم تليفون الضامن</label>
+                        {{ form.sponser_phone }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-12">الوسيط الضامن</label>
+                        {{ form.sponser }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-6">
+                        <label class="col-md-12">عنوان الشركه</label>
+                        {{ form.company_address }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="col-md-12">اسم الشركة</label>
+                        {{ form.company_name }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-4">
+                      <label class="col-md-12" >تاريخ انتهاء الرخصة التجارية</label>
+                        {{ form.commercial_exp }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">تاريخ انتهاء تقدير الاحتياج</label>
+                        {{ form.exp_need }}
+                    </div>
+                    <div class="col-md-4">
+                        <label class="col-md-12">تاريخ انتهاء الاقامة</label>
+                        {{ form.exp_date }}
+                    </div>
+                  </div>
+                  <div class="form-group" >
+                    <div class="col-md-3">
+                      <label class="col-md-12" >الباقى</label>
+                        {{ form.unpaid_money }}
+                    </div>
+                    <div class="col-md-3">
+                      <label class="col-md-12" >المبلغ الواصل</label>
+                        {{ form.paid_money }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-md-12">المبلغ الاجمالى</label>
+                        {{ form.total_money }}
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-md-12">طريقة الحساب</label>
+                        {{ form.calculate_method }}
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-2" style="float: right;margin-right:45%;">
+                      <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </form>
+        <div class="row">
+            <div name="mydev" class="col-sm-6 col-md-12" style="text-align: right;margin-bottom:20px;">
+                <form class="form-horizontal form-material" action="{% url 'my_app:worker_detail' worker.id %}" method="post">
+                  {% csrf_token %}
+                  <div class="col-md-3">
+                    {{ form2.date_of_paid }}
+                  </div>
+                  <div class="col-md-3">
+                    {{ form2.date_of_exp }}
+                  </div>
+                  <div class="col-md-3">
+                    {{ form2.installment }}
+                  </div>
+                  <div class="col-md-3">
+                    <button type="submit" class="btn btn-warning">اضافة قسط</button>
+                  </div>
+                </form>
+            </div>
+            <table class="table table-bordered table-hover" style="text-align: right;font-size:13pt;">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" style="text-align: right;">تاريخ السداد</th>
+                  <th scope="col" style="text-align: right;">تاريخ الاستحقاق</th>
+                  <th scope="col" style="text-align: right;">القسط</th>
+                  <th scope="col" style="text-align: right;">#</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% if not worker.reports.all %}
+                    <tr> <td colspan="4"><h3 style="text-align: center;">لا يوجد اقساط فى الوقت الحالى</h3></td> </tr>
+                {% else %}
+                  {% for r in worker.reports.all %}
+                      <tr>
+                        <td>{{ r.date_of_exp }}</td>
+                        <td>{{ r.date_of_paid }}</td>
+                        <td>{{ r.installment }}</td>
+                        <th scope="row" style="text-align: right;">{{ forloop.counter }}</th>
+                      </tr>
+                  {% endfor %}
+                {% endif %}
+              </tbody>
+              </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock  %}

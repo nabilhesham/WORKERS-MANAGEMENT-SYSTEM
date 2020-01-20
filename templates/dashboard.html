@@ -1,0 +1,123 @@
+{% extends "base.html" %} {% block title %}الاحصائيات{% endblock %} {% block content %}
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row bg-title">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 pull-right">
+                <h4 class="page-title" style="text-align:right ; font-size:35px ; font-family:cortoba">الإحصائيات</h4>
+            </div>
+        </div>
+        <!-- .row -->
+        <div class="row">
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title" style="text-align: center;font-size: 25px;font-weight: 400;font-family: cortoba;">اجمالى المنتهى اقامتهم </h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash3"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-info"></i> <span class="counter text-info">{{ ended | length }}</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title" style="text-align: center;font-size: 25px;font-weight: 400;font-family: cortoba;">إجمالي الشركات</h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash2"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">{{ companies | length }}</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4 col-sm-6 col-xs-12">
+                <div class="white-box analytics-info">
+                    <h3 class="box-title" style="text-align: center;font-size: 25px;font-weight: 400;font-family: cortoba;">إجمالي العملاء</h3>
+                    <ul class="list-inline two-part">
+                        <li>
+                            <div id="sparklinedash"></div>
+                        </li>
+                        <li class="text-right"><i class="ti-arrow-up text-success"></i> <span class="counter text-success">{{ workers | length }}</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title" style="text-align: right;">أحدث الإضافات للعملاء </h3>
+                    <div class="table-responsive">
+                        <table class="table" dir="rtl" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">#</th>
+                                    <th style="text-align: center;">الإسم</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for w in workers %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td class="txt-oflo"><a href="{{ w.get_absolute_url }}">{{ w.full_name }}</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title" style="text-align: right;">أحدث الإضافات للشركات </h3>
+                    <div class="table-responsive">
+                        <table class="table" dir="rtl" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">#</th>
+                                    <th style="text-align: center;">الإسم</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for c in companies %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td class="txt-oflo"><a href="{% url 'my_app:company' c %}">{{ c }}</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="white-box">
+                    <h3 class="box-title" style="text-align: right;">أحدث المنتهين إقامتهم </h3>
+                    <div class="table-responsive">
+                        <table class="table" dir="rtl" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                    <th style="text-align: center;">#</th>
+                                    <th style="text-align: center;">الإسم</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for e in ended %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td class="txt-oflo"><a href="{{ e.get_absolute_url }}">{{ e.full_name }}</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
